@@ -3,12 +3,13 @@ class DisplayPlates extends StatelessWidget{
   DisplayPlates({this.values});
   List values;
   final colorDictionary = {
-    45: Colors.black,
-    35: Colors.purple,
-    25: Colors.blue,
-    10: Colors.green,
-    5 : Colors.red,
-    2.5: Colors.pink
+    50.0: Colors.orange[600],
+    45: Colors.cyan[600],
+    35: Colors.yellow[600],
+    25: Colors.black,
+    10: Colors.green[600],
+    5 : Colors.red[600],
+    2.5: Colors.purple[600]
   };
   List<Widget> CreateDisplay(){
     List<Widget> a = [];
@@ -38,17 +39,28 @@ class DisplayPlate extends StatelessWidget{
 
   Widget build(BuildContext context){
     return new Container(
-      padding: EdgeInsets.all(15.0),
-      width: 150.0,
-      color: color,
-      child: new Center(
-        child: new Text(weight.toString(),
-          style: new TextStyle(
-            fontSize: 20.0,
-            color: Colors.white,
-          ),
+        padding: EdgeInsets.all(15.0),
+        width: 150.0,
+        //color: color,
+        decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(16.0),
+                topRight: Radius.circular(16.0),
+                bottomLeft: Radius.circular(16.0),
+                bottomRight: Radius.circular(16.0)
+            )
+        ),
+
+        child: new Center(
+            child: new Text(
+              weight.toString(),
+              style: new TextStyle(
+                fontSize: 20.0,
+                color: Colors.white,
+              ),
+            )
         )
-      )
     );
   }
 }

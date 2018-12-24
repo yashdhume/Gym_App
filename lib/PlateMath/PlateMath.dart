@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gym_app/PlateMath/DisplayPlates.dart';
 import 'package:gym_app/PlateMath/DisplayPlateButtons.dart';
+import 'package:gym_app/PlateMath/DisplayPlates.dart';
 typedef AddCallBack = void Function(int n);
 class PlateMath extends StatefulWidget {
   PlateMath({Key key}) : super(key: key);
@@ -121,14 +121,12 @@ class _PlateMath extends State<PlateMath> {
                 Center(
                   //padding: EdgeInsets.only(top:30.0),
                   child: DisplayPlateButtons(
-                      addMethod: plateAdd,
                       plates: firstHalfList()
                   ),
                 ),
                 // SizedBox(height: 100.0),
                 Container(
                   child: DisplayPlateButtons(
-                      addMethod: plateAdd,
                       plates: lastHalfList()
                   ),
                 ),
