@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 class DisplayPlateButtons extends StatelessWidget{
-  DisplayPlateButtons({this.plates});
+  final AddPlateCallback addMethod;  
+  DisplayPlateButtons({this.plates, this.addMethod});
   List plates;
   final colorDictionary = {
     50.0: Colors.orange[600],
@@ -15,6 +16,7 @@ class DisplayPlateButtons extends StatelessWidget{
     List<Widget> a = [];
     for (int i = 0;i<plates.length;i++) {
       a.add(new PlateButtons(
+        addValue: addMethod,
         plate: plates[i],
         color: colorDictionary[plates[i]],
       )
@@ -32,16 +34,18 @@ class DisplayPlateButtons extends StatelessWidget{
 
   }
 }
+typedef AddPlateCallback = void Function(double value);
 class PlateButtons extends StatelessWidget{
   final double plate;
   final Color color;
+  final AddPlateCallback addValue;
   // final _PlateMath  _plateMath;
-  const PlateButtons({this.plate, this.color});
+  const PlateButtons({this.plate, this.color, this.addValue});
   Widget build(BuildContext context){
     return Center(
         child: FloatingActionButton(
           child: new Text(plate.toInt().toString()),
-          // onPressed: () => plateAdd(plate),
+           onPressed: () => addValue(plate),
           backgroundColor: color,
         )
 
