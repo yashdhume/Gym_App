@@ -72,28 +72,18 @@ class _PlateMath extends State<PlateMath> {
     return a;
   }
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
-  void _showModalSheet() {
-    showModalBottomSheet(
+  String _value = '';
+  void _setValue(String value) => setState(() => _value = value);
+  Future _askUser() async {
+
+    showDialog(
         context: context,
-        builder: (builder) {
-          return new Container(
-              color: Colors.red[600],
-              height: 600.0,
-              child: SizedBox(
-                child: Row(
-                  children: <Widget>[
-                    new Center(
+        child: new Container(
+          child: DisplayPlateChange(),
+        )
+    );
 
-
-                    )
-
-                  ],
-                ),
-              )
-          );
-        });
   }
-
   Widget build(BuildContext context) {
     return new Scaffold(
       key: _scaffoldKey,
@@ -102,7 +92,7 @@ class _PlateMath extends State<PlateMath> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.keyboard_arrow_down),
-            onPressed: _showModalSheet,
+            onPressed: _askUser,
           )
         ],
       ),
@@ -125,6 +115,7 @@ class _PlateMath extends State<PlateMath> {
                   ),
                 ),
                 SizedBox(height: 10.0,),
+
                 SizedBox(
                     height: 72.0,
                     child: Column(children: <Widget>[
