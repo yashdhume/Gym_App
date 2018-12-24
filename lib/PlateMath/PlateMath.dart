@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym_app/PlateMath/DisplayPlateButtons.dart';
 import 'package:gym_app/PlateMath/DisplayPlates.dart';
+import 'package:gym_app/PlateMath/PlateChange.dart';
 typedef AddCallBack = void Function(int n);
 class PlateMath extends StatefulWidget {
   PlateMath({Key key}) : super(key: key);
@@ -108,32 +109,30 @@ class _PlateMath extends State<PlateMath> {
       body: new Container(
           child: new Column(
               children: <Widget>[
-                SizedBox(
-                  height: 100.0,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[
-
-                      ]),
-                ),
-                SizedBox(height: 100.0),
-                Center(
+                SizedBox(height: 50.0),
+                Container(
                   //padding: EdgeInsets.only(top:30.0),
                   child: DisplayPlateButtons(
+                      addMethod: plateAdd,
                       plates: firstHalfList()
                   ),
                 ),
-                // SizedBox(height: 100.0),
+                SizedBox(height: 10.0),
                 Container(
                   child: DisplayPlateButtons(
+                      addMethod: plateAdd,
                       plates: lastHalfList()
                   ),
                 ),
+                SizedBox(height: 10.0,),
                 SizedBox(
-                    height: 88.0,
+                    height: 72.0,
                     child: Column(children: <Widget>[
-                      Text(total.toString()),
+                      Text(total.toString(),
+                        style: new TextStyle(
+                          fontSize: 20.0,
+                        ),
+                      ),
                       RaisedButton(
                         onPressed: () => plateAdd(0.0),
                         child: new Text("Clear"),

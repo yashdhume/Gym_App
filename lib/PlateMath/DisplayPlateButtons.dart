@@ -26,10 +26,9 @@ class DisplayPlateButtons extends StatelessWidget{
   }
   @override
   Widget build(BuildContext context) {
-    return new Center(
-      child: Row(
+    return new Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: CreateDisplay(),
-      ),
     );
 
   }
@@ -39,7 +38,6 @@ class PlateButtons extends StatelessWidget{
   final double plate;
   final Color color;
   final AddPlateCallback addValue;
-  // final _PlateMath  _plateMath;
   const PlateButtons({this.plate, this.color, this.addValue});
   Widget build(BuildContext context){
     return Center(

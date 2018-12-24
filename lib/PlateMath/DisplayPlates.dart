@@ -51,7 +51,6 @@ class DisplayPlate extends StatelessWidget{
                 bottomRight: Radius.circular(16.0)
             )
         ),
-
         child: new Center(
             child: new Text(
               weight.toString(),
