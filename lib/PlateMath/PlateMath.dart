@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym_app/PlateMath/DisplayPlateButtons.dart';
 import 'package:gym_app/PlateMath/DisplayPlates.dart';
-import 'package:gym_app/PlateMath/PlateChange.dart';
 typedef AddCallBack = void Function(int n);
 class PlateMath extends StatefulWidget {
   PlateMath({Key key}) : super(key: key);
@@ -71,30 +70,11 @@ class _PlateMath extends State<PlateMath> {
     for (int i = weights.length~/2;i<weights.length;i++) a.add(weights[i]);
     return a;
   }
-  final _scaffoldKey = new GlobalKey<ScaffoldState>();
-  String _value = '';
-  void _setValue(String value) => setState(() => _value = value);
-  Future _askUser() async {
-
-    showDialog(
-        context: context,
-        child: new Container(
-          child: DisplayPlateChange(),
-        )
-    );
-
-  }
   Widget build(BuildContext context) {
     return new Scaffold(
-      key: _scaffoldKey,
+      //key: _scaffoldKey,
       appBar: new AppBar(
         title: new Text('Plate Math'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.keyboard_arrow_down),
-            onPressed: _askUser,
-          )
-        ],
       ),
       body: new Container(
           child: new Column(

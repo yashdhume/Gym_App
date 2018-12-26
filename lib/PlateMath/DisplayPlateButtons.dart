@@ -42,7 +42,7 @@ class PlateButtons extends StatelessWidget{
   Widget build(BuildContext context){
     return Center(
         child: FloatingActionButton(
-          child: new Text(plate.toInt().toString()),
+          child: new Text(plate.toString()),
            onPressed: () => addValue(plate),
           backgroundColor: color,
         )
