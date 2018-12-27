@@ -9,15 +9,13 @@ class PlateMath extends StatefulWidget {
 }
 class _PlateMath extends State<PlateMath> {
   @override
-  var total = 0.0;
-  List platess = [];
-  List showPlates = [];
-  final myController = TextEditingController();
-  bool plateBool45 = false;
-
+  var _total = 0.0;
+  List _plate = [];
+  List _showPlates = [];
+  final _myController = TextEditingController();
   @override
   void dispose() {
-    myController.dispose();
+    _myController.dispose();
     super.dispose();
   }
   List weights = [50.0,45.0, 35.0, 25.0, 10.0, 5.0, 2.5];
@@ -40,12 +38,12 @@ class _PlateMath extends State<PlateMath> {
         break;
       }
     }
-    platess= plates;
-    return platess;
+    _plate= plates;
+    return _plate;
   }
   void setShowPlates(List values){
     setState(() {
-      showPlates = values;
+      _showPlates = values;
     });
   }
   List printPlate(double weights){
@@ -56,8 +54,8 @@ class _PlateMath extends State<PlateMath> {
 
   void plateAdd(double which) {
     setState(() {
-      if (which ==0.0) total =0.0;
-      total+= which;
+      if (which ==0.0) _total =0.0;
+      _total+= which;
     });
   }
   List firstHalfList(){
@@ -73,9 +71,15 @@ class _PlateMath extends State<PlateMath> {
   Widget build(BuildContext context) {
     return new Scaffold(
       //key: _scaffoldKey,
-      appBar: new AppBar(
+      /*appBar: new AppBar(
         title: new Text('Plate Math'),
-      ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: _askUser,
+          )
+        ],
+      ),*/
       body: new Container(
           child: new Column(
               children: <Widget>[
@@ -94,18 +98,21 @@ class _PlateMath extends State<PlateMath> {
                       plates: lastHalfList()
                   ),
                 ),
-                SizedBox(height: 10.0,),
+                SizedBox(height: 10.0),
 
                 SizedBox(
                     height: 72.0,
                     child: Column(children: <Widget>[
-                      Text(total.toString(),
+                      Text(_total.toString(),
                         style: new TextStyle(
                           fontSize: 20.0,
                         ),
                       ),
                       RaisedButton(
-                        onPressed: () => plateAdd(0.0),
+                        onPressed: () {
+                          setShowPlates([]);
+                          plateAdd(0.0);
+                          },
                         child: new Text("Clear"),
                         shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(50.0)),
@@ -123,19 +130,17 @@ class _PlateMath extends State<PlateMath> {
                       new Flexible(
                           child: new TextField(
                             decoration: new InputDecoration(
-                              //fillColor: Colors.white,
                                 hintText: 'Enter Weight'
                             ),
                             keyboardType: TextInputType.number,
-                            controller: myController,
+                            controller: _myController,
                           )),
                       Padding(
                         padding: EdgeInsets.all(10.0),
                       ),
                       RaisedButton(
-                        onPressed: () {
-                          setShowPlates(plateMath(double.parse(myController.text.toString())));
-                        },//plateMath(double.parse(myController.text)),
+                        onPressed: () => setShowPlates(plateMath(double.parse(_myController.text.toString())))
+                        ,//plateMath(double.parse(_myController.text)),
                         child: new Text("Enter"),
                         shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(50.0)),
@@ -150,7 +155,7 @@ class _PlateMath extends State<PlateMath> {
                 new Container(
                     padding: EdgeInsets.only(top:30.0),
                     child: DisplayPlates(
-                      values: showPlates,
+                      values: _showPlates,
                     )
                 )
               ]

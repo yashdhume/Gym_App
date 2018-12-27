@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 class DisplayPlateButtons extends StatelessWidget{
-  final AddPlateCallback addMethod;  
+  final AddPlateCallback addMethod;
   DisplayPlateButtons({this.plates, this.addMethod});
   List plates;
   final colorDictionary = {
@@ -43,7 +43,10 @@ class PlateButtons extends StatelessWidget{
     return Center(
         child: FloatingActionButton(
           child: new Text(plate.toString()),
-           onPressed: () => addValue(plate),
+           onPressed: (){
+            addValue(plate);
+
+           },
           backgroundColor: color,
         )
 

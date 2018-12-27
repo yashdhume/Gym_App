@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gym_app/PlateMath/PlateMath.dart';
+import 'package:gym_app/PlateMath/PlateMain.dart';
 
 void main() => runApp(GymApp());
 
@@ -12,7 +12,9 @@ class GymApp extends StatelessWidget {
         primaryColor: Colors.red,
         accentColor: Colors.cyan[600],
       ),
-      home: new PlateMath(),
+      home: new PlateMain(),
     );
+
   }
+
 }
