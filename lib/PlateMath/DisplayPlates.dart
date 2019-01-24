@@ -17,7 +17,7 @@ class DisplayPlates extends StatelessWidget{
       a.add(new DisplayPlate(color: Colors.grey, weight: 0));
       return a;
     }
-    for (int i = values.length-1; i > -1; i--) {
+    for (int i = 0; i <values.length; i++) {
       a.add(new DisplayPlate(
         color: colorDictionary[values[i]],
         weight: values[i],
@@ -40,7 +40,7 @@ class DisplayPlate extends StatelessWidget{
   Widget build(BuildContext context){
     return new Container(
         padding: EdgeInsets.all(15.0),
-        width: 150.0,
+        width: 100.0+weight*10,
         //color: color,
         decoration: BoxDecoration(
             color: color,

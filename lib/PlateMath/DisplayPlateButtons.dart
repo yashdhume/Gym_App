@@ -45,7 +45,6 @@ class PlateButtons extends StatelessWidget{
           child: new Text(plate.toString()),
            onPressed: (){
             addValue(plate);
-
            },
           backgroundColor: color,
         )

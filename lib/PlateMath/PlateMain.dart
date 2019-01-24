@@ -43,7 +43,6 @@ class _PlateMain extends State<PlateMain> with TickerProviderStateMixin {
              // controller: _controller,
               tabs:[
                 Tab(icon: Icon(Icons.fitness_center)),
-                Tab(icon: Icon(Icons.add)),
                 Tab(icon: Icon(Icons.settings)),
               ],
             ),
@@ -51,7 +50,6 @@ class _PlateMain extends State<PlateMain> with TickerProviderStateMixin {
           body: TabBarView(
             children: [
               new PlateMath(),
-              Icon(Icons.add),
               Icon(Icons.settings),
             ],
           ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DisplayPlateChange extends StatelessWidget{
-  final List plates = [50.0,45.0, 35.0, 25.0, 10.0, 5.0, 2.5];
+  final List <double> plates = [50, 45, 35, 25, 10, 5, 2.5];
  // PlateChange({this.plates});
   List<Widget> CreateDisplay(){
     List<Widget>a=[];

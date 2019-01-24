@@ -18,7 +18,7 @@ class _PlateMath extends State<PlateMath> {
     _myController.dispose();
     super.dispose();
   }
-  List weights = [50.0,45.0, 35.0, 25.0, 10.0, 5.0, 2.5];
+  List<double> weights = [45, 25, 10, 5, 2.5];
   List plateMath(double weight) {
     double barWeight = 45.0;
     List plates = [];
@@ -102,23 +102,24 @@ class _PlateMath extends State<PlateMath> {
 
                 SizedBox(
                     height: 72.0,
-                    child: Column(children: <Widget>[
-                      Text(_total.toString(),
-                        style: new TextStyle(
-                          fontSize: 20.0,
-                        ),
-                      ),
-                      RaisedButton(
-                        onPressed: () {
-                          setShowPlates([]);
-                          plateAdd(0.0);
-                          },
-                        child: new Text("Clear"),
-                        shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(50.0)),
-                        color: Colors.red[600],
-                      )
-                    ])),
+                    child: Column(
+                        children: <Widget>[
+                          Text(_total.toString(),
+                            style: new TextStyle(
+                              fontSize: 20.0,
+                            ),
+                          ),
+                          RaisedButton(
+                            onPressed: () {
+                              setShowPlates([]);
+                              plateAdd(0.0);
+                            },
+                            child: new Text("Clear"),
+                            shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(50.0)),
+                            color: Colors.red[600],
+                          )
+                        ])),
                 SizedBox(
                   height: 50.0,
                   child: Row(
