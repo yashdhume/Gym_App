@@ -5,6 +5,7 @@ class ViewModel extends Model {
   List<double> weights = [45, 25, 10, 5, 2.5];
   double barWeight = 45.0;
   final colorDictionary = {
+    100.0: Colors.pinkAccent,
     55.0: Colors.orange[600],
     45: Colors.cyan[600],
     35: Colors.yellow[600],

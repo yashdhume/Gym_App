@@ -4,7 +4,6 @@ import 'package:gym_app/PlateMath/DisplayPlates.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:gym_app/ViewModel.dart';
 import 'package:flutter/services.dart';
-import 'package:keyboard_actions/keyboard_actions.dart';
 
 typedef AddCallBack = void Function(int n);
 
@@ -22,11 +21,11 @@ class _PlateMath extends State<PlateMath> {
   List _showPlates = [];
   final _myController = TextEditingController();
 
-  @override
+  /*@override
   void dispose() {
     _myController.dispose();
     super.dispose();
-  }
+  }*/
 
   List plateMath(double weight, ViewModel model) {
     List plates = [];
@@ -82,12 +81,17 @@ class _PlateMath extends State<PlateMath> {
     return a;
   }
 
-  FocusNode _nodeText1 = FocusNode();
+  void enterButton(ViewModel model) {
+    setShowPlates(
+        plateMath(double.parse(_myController.text.toString()), model));
+    SystemChannels.textInput.invokeMethod('TextInput.hide');
+  }
 
   Widget build(BuildContext context) {
     return ScopedModelDescendant<ViewModel>(
         builder: (context, child, model) => Scaffold(
-                body: new GestureDetector(
+            resizeToAvoidBottomPadding: false,
+            body: new GestureDetector(
               onTap: () {
                 // call this method here to hide soft keyboard
                 FocusScope.of(context).requestFocus(new FocusNode());
@@ -95,7 +99,6 @@ class _PlateMath extends State<PlateMath> {
                 SystemChannels.textInput.invokeMethod('TextInput.hide');
               },
               child: new ListView(children: <Widget>[
-
                 new Column(children: <Widget>[
                   SizedBox(height: 50.0),
                   Container(
@@ -109,67 +112,57 @@ class _PlateMath extends State<PlateMath> {
                         addMethod: plateAdd, plates: lastHalfList(model)),
                   ),
                   SizedBox(height: 10.0),
-                  SizedBox(
-                      height: 72.0,
-                      child: Column(children: <Widget>[
-                        Text(
-                          _total.toString(),
-                          style: new TextStyle(
-                            fontSize: 20.0,
-                          ),
-                        ),
-                        RaisedButton(
-                          onPressed: () {
-                            setShowPlates([]);
-                            plateAdd(0.0);
-                          },
-                          child: new Text("Clear"),
-                          shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(50.0)),
-                          color: Colors.red[600],
-                        )
-                      ])),
-                  SizedBox(
-                    height: 50.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.all(40.0),
-                        ),
-                        new Flexible(
-                            child: new TextField(
-                          decoration:
-                              new InputDecoration(hintText: 'Enter Weight'),
-                          keyboardType: TextInputType.number,
-                          focusNode: _nodeText1,
-                          controller: _myController,
-                          textInputAction: TextInputAction.done,
-                        )),
-                        Padding(
-                          padding: EdgeInsets.all(10.0),
-                        ),
-                        RaisedButton(
-                          onPressed: () => setShowPlates(plateMath(
-                              double.parse(_myController.text.toString()),
-                              model)),
-                          //plateMath(double.parse(_myController.text)),
-                          child: new Text("Enter"),
-                          shape: new RoundedRectangleBorder(
-                              borderRadius: new BorderRadius.circular(50.0)),
-                          color: Colors.red[600],
-                        ),
-                        Padding(
-                          padding: EdgeInsets.all(40.0),
-                        ),
-                      ],
+                  Text(
+                    _total.toString(),
+                    style: new TextStyle(
+                      fontSize: 20.0,
                     ),
                   ),
+                  RaisedButton(
+                    onPressed: () {
+                      setShowPlates([]);
+                      plateAdd(0.0);
+                    },
+                    child: new Text("Clear"),
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(50.0)),
+                    color: Colors.red[600],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.all(40.0),
+                      ),
+                      new Flexible(
+                          child: new TextField(
+                        decoration:
+                            new InputDecoration(hintText: 'Enter Weight'),
+                        keyboardType: TextInputType.number,
+                        controller: _myController,
+                        textInputAction: TextInputAction.done,
+                      )),
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                      ),
+                      RaisedButton(
+                        onPressed: () => enterButton(model),
+                        //plateMath(double.parse(_myController.text)),
+                        child: new Text("Enter"),
+                        shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(50.0)),
+                        color: Colors.red[600],
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(40.0),
+                      ),
+                    ],
+                  ),
                   new Container(
-                      padding: EdgeInsets.only(top: 30.0),
+                      //padding: EdgeInsets.only(top: 30.0),
                       child: DisplayPlates(
-                        values: _showPlates,
-                      ))
+                    values: _showPlates,
+                  ))
                 ])
               ]),
             )));
