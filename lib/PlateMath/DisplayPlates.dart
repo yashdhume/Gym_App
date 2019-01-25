@@ -9,10 +9,7 @@ class DisplayPlates extends StatelessWidget {
 
   List<Widget> CreateDisplay(ViewModel model) {
     List<Widget> a = [];
-    if (values.isEmpty) {
-      a.add(new DisplayPlate(color: Colors.grey, weight: 0));
-      return a;
-    }
+
     for (int i = 0; i < values.length; i++) {
       a.add(new DisplayPlate(
         color: model.colorDictionary[values[i]],
@@ -40,7 +37,8 @@ class DisplayPlate extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Container(
         padding: EdgeInsets.all(15.0),
-        width: 100.0 + weight * 10,
+        width:  100 + weight * 10,
+        height: 50,
         //color: color,
         decoration: BoxDecoration(
             color: color,

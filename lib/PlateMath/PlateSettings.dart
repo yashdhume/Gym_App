@@ -4,7 +4,7 @@ import 'package:scoped_model/scoped_model.dart';
 import 'package:gym_app/ViewModel.dart';
 
 class DisplayPlateButtonss extends StatelessWidget {
-  List<double> plates = [50, 45, 35, 25, 10, 5, 2.5];
+  List<double> plates = [100,55, 45, 35, 25, 10, 5, 2.5];
 
   Color colorChange(ViewModel model, value) {
     if (model.weights.contains(value))
@@ -14,7 +14,17 @@ class DisplayPlateButtonss extends StatelessWidget {
   }
   List<Widget> CreateDisplay(ViewModel model) {
     List<Widget> a = [];
-    for (int i = 0; i < plates.length; i++) {
+    for (int i = 0; i < plates.length~/2; i++) {
+      a.add(new PlateButtonss(
+        plate: plates[i],
+        color: colorChange(model, plates[i]),
+      ));
+    }
+    return a;
+  }
+  List<Widget> CreateDisplay2(ViewModel model) {
+    List<Widget> a = [];
+    for (int i = plates.length~/2; i < plates.length; i++) {
       a.add(new PlateButtonss(
         plate: plates[i],
         color: colorChange(model, plates[i]),
@@ -32,13 +42,19 @@ class DisplayPlateButtonss extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return ScopedModelDescendant<ViewModel>(
-        builder: (context, child, model) => new Center( child:Column(
+        builder: (context, child, model) => new Center( child:
+
+        Column(
           mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: CreateDisplay(model),
+              ),
+              SizedBox(height: 10.0,),
+              new Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: CreateDisplay2(model),
               ),
               new Row(
                 mainAxisAlignment: MainAxisAlignment.center,
