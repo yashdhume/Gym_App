@@ -1,46 +1,46 @@
 import 'package:flutter/material.dart';
-class DisplayPlates extends StatelessWidget{
+import 'package:scoped_model/scoped_model.dart';
+import 'package:gym_app/ViewModel.dart';
+
+class DisplayPlates extends StatelessWidget {
   DisplayPlates({this.values});
+
   List values;
-  final colorDictionary = {
-    50.0: Colors.orange[600],
-    45: Colors.cyan[600],
-    35: Colors.yellow[600],
-    25: Colors.black,
-    10: Colors.green[600],
-    5 : Colors.red[600],
-    2.5: Colors.purple[600]
-  };
-  List<Widget> CreateDisplay(){
+
+  List<Widget> CreateDisplay(ViewModel model) {
     List<Widget> a = [];
     if (values.isEmpty) {
       a.add(new DisplayPlate(color: Colors.grey, weight: 0));
       return a;
     }
-    for (int i = 0; i <values.length; i++) {
+    for (int i = 0; i < values.length; i++) {
       a.add(new DisplayPlate(
-        color: colorDictionary[values[i]],
+        color: model.colorDictionary[values[i]],
         weight: values[i],
       ));
     }
     return a;
   }
+
   @override
   Widget build(BuildContext context) {
-    return new Column(
-      children: CreateDisplay(),
-    );
+    return ScopedModelDescendant<ViewModel>(
+        builder: (context, child, model) => Column(
+              children: CreateDisplay(model),
+            ));
   }
 }
-class DisplayPlate extends StatelessWidget{
+
+class DisplayPlate extends StatelessWidget {
   final Color color;
   final double weight;
+
   DisplayPlate({this.color, this.weight});
 
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return new Container(
         padding: EdgeInsets.all(15.0),
-        width: 100.0+weight*10,
+        width: 100.0 + weight * 10,
         //color: color,
         decoration: BoxDecoration(
             color: color,
@@ -48,18 +48,14 @@ class DisplayPlate extends StatelessWidget{
                 topLeft: Radius.circular(16.0),
                 topRight: Radius.circular(16.0),
                 bottomLeft: Radius.circular(16.0),
-                bottomRight: Radius.circular(16.0)
-            )
-        ),
+                bottomRight: Radius.circular(16.0))),
         child: new Center(
             child: new Text(
-              weight.toString(),
-              style: new TextStyle(
-                fontSize: 20.0,
-                color: Colors.white,
-              ),
-            )
-        )
-    );
+          weight.toString(),
+          style: new TextStyle(
+            fontSize: 20.0,
+            color: Colors.white,
+          ),
+        )));
   }
 }

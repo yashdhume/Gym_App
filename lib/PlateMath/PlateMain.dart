@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym_app/PlateMath/PlateMath.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'package:gym_app/ViewModel.dart';
 
 class PlateMain extends StatefulWidget {
   @override
@@ -10,7 +12,6 @@ class _PlateMain extends State<PlateMain> with TickerProviderStateMixin {
   String title;
   final List<MyTabs> _tabs = [
     new MyTabs(title: "Plate Math", color: Colors.red),
-    new MyTabs(title: "1 Rep Max", color: Colors.orange[600]),
     new MyTabs(title: 'Settings', color: Colors.black38)
   ];
   MyTabs _myHandler;
@@ -32,7 +33,8 @@ class _PlateMain extends State<PlateMain> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return ScopedModelDescendant<ViewModel>(
+        builder: (context, child, model)=>MaterialApp(
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
@@ -61,6 +63,7 @@ class _PlateMain extends State<PlateMain> with TickerProviderStateMixin {
         primaryColor: Colors.red,
         accentColor: Colors.cyan[600],
       ),
+    )
     );
   }
 }
