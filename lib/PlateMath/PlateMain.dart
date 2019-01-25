@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym_app/PlateMath/PlateMath.dart';
+import 'package:gym_app/PlateMath/PlateSettings.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:gym_app/ViewModel.dart';
 
@@ -34,37 +35,36 @@ class _PlateMain extends State<PlateMain> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<ViewModel>(
-        builder: (context, child, model)=>MaterialApp(
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            title: new Text(_myHandler.title),
-            backgroundColor: _myHandler.color,
-            bottom: TabBar(
-             // controller: _controller,
-              tabs:[
-                Tab(icon: Icon(Icons.fitness_center)),
-                Tab(icon: Icon(Icons.settings)),
-              ],
-            ),
-          ),
-          body: TabBarView(
-            children: [
-              new PlateMath(),
-              Icon(Icons.settings),
-            ],
-          ),
-        ),
-      ),
-      theme: new ThemeData(
-        primarySwatch: Colors.blue,
-        brightness: Brightness.dark,
-        primaryColor: Colors.red,
-        accentColor: Colors.cyan[600],
-      ),
-    )
-    );
+        builder: (context, child, model) => MaterialApp(
+              home: DefaultTabController(
+                length: 3,
+                child: Scaffold(
+                  appBar: AppBar(
+                    title: new Text(_myHandler.title),
+                    backgroundColor: _myHandler.color,
+                    bottom: TabBar(
+                      // controller: _controller,
+                      tabs: [
+                        Tab(icon: Icon(Icons.fitness_center)),
+                        Tab(icon: Icon(Icons.settings)),
+                      ],
+                    ),
+                  ),
+                  body: TabBarView(
+                    children: [
+                      new PlateMath(),
+                      new DisplayPlateButtonss(),
+                    ],
+                  ),
+                ),
+              ),
+              theme: new ThemeData(
+                primarySwatch: Colors.blue,
+                brightness: Brightness.dark,
+                primaryColor: Colors.red,
+                accentColor: Colors.cyan[600],
+              ),
+            ));
   }
 }
 

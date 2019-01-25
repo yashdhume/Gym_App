@@ -3,6 +3,7 @@ import 'package:gym_app/PlateMath/DisplayPlateButtons.dart';
 import 'package:gym_app/PlateMath/DisplayPlates.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:gym_app/ViewModel.dart';
+import 'package:gym_app/PlateMath/PlateSettings.dart';
 
 typedef AddCallBack = void Function(int n);
 
@@ -83,16 +84,6 @@ class _PlateMath extends State<PlateMath> {
   Widget build(BuildContext context) {
     return ScopedModelDescendant<ViewModel>(
         builder: (context, child, model) => Scaffold(
-              //key: _scaffoldKey,
-              /*appBar: new AppBar(
-        title: new Text('Plate Math'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: _askUser,
-          )
-        ],
-      ),*/
               body: new Container(
                   child: new Column(children: <Widget>[
                 SizedBox(height: 50.0),
@@ -148,7 +139,8 @@ class _PlateMath extends State<PlateMath> {
                       RaisedButton(
                         onPressed: () => setShowPlates(plateMath(
                             double.parse(_myController.text.toString()),
-                            model)), //plateMath(double.parse(_myController.text)),
+                            model)),
+                        //plateMath(double.parse(_myController.text)),
                         child: new Text("Enter"),
                         shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(50.0)),

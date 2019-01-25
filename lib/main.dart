@@ -7,7 +7,7 @@ void main() => runApp(GymApp());
 
 class GymApp extends StatelessWidget {
   Widget build(BuildContext context) {
-    return new ScopedModel <ViewModel>(
+    return new ScopedModel<ViewModel>(
       model: new ViewModel(),
       child: MaterialApp(
         theme: new ThemeData(
@@ -19,7 +19,5 @@ class GymApp extends StatelessWidget {
         home: new PlateMain(),
       ),
     );
-
   }
-
 }
