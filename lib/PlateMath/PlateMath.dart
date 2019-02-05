@@ -154,7 +154,7 @@ class _PlateMath extends State<PlateMath> {
                         color: Colors.red[600],
                       ),
                       Padding(
-                        padding: EdgeInsets.all(40.0),
+                        padding:  EdgeInsets.all(40.0),
                       ),
                     ],
                   ),

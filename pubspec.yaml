@@ -21,6 +21,9 @@ dependencies:
   cupertino_icons: ^0.1.2
   scoped_model: ^1.0.1
   keyboard_actions: ^1.0.3
+  google_sign_in: ^3.3.0
+  firebase_auth: ^0.7.0
+  cloud_firestore: ^0.8.2+3
 
 dev_dependencies:
   flutter_test:

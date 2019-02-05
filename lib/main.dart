@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gym_app/PlateMath/PlateMain.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:gym_app/ViewModel.dart';
-
 void main() => runApp(GymApp());
 
 class GymApp extends StatelessWidget {
