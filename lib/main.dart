@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gym_app/PlateMath/PlateMain.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:gym_app/ViewModel.dart';
+import 'package:gym_app/ExercisesList/ListExercises.dart';
 void main() => runApp(GymApp());
 
 class GymApp extends StatelessWidget {
@@ -15,7 +16,7 @@ class GymApp extends StatelessWidget {
           primaryColor: Colors.red,
           accentColor: Colors.cyan[600],
         ),
-        home: new PlateMain(),
+        home: new ListExercises(),
       ),
     );
   }
