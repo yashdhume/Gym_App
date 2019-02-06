@@ -1,32 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
-import 'package:gym_app/ViewModel.dart';
 
-class DisplayPlates extends StatelessWidget {
-  DisplayPlates({this.values});
-
-  List values;
-
-  List<Widget> CreateDisplay(ViewModel model) {
-    List<Widget> a = [];
-
-    for (int i = 0; i < values.length; i++) {
-      a.add(new DisplayPlate(
-        color: model.colorDictionary[values[i]],
-        weight: values[i],
-      ));
-    }
-    return a;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ScopedModelDescendant<ViewModel>(
-        builder: (context, child, model) => Column(
-              children: CreateDisplay(model),
-            ));
-  }
-}
 
 class DisplayPlate extends StatelessWidget {
   final Color color;

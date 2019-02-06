@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'SortPopUpMenu.dart';
 import 'package:gym_app/data/database.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
+import 'package:gym_app/domain/view_model.dart';
+import 'package:gym_app/domain/app_state.dart';
+
 
 class ListExercises extends StatefulWidget {
   _ListExercises createState() => new _ListExercises();
@@ -54,9 +59,11 @@ class _ListExercises extends State<ListExercises> {
       streamer(choicee);
     }
   }
-
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return StoreConnector<AppState, ViewModel>(
+      converter: (Store<AppState> store) => ViewModel.create(store),
+      builder: (BuildContext context, ViewModel model) => 
+       Scaffold(
       appBar: AppBar(
         title: Text('List'),
         actions: <Widget>[
@@ -89,6 +96,6 @@ class _ListExercises extends State<ListExercises> {
                   _buildListItem(context, snapshot.data.documents[index]),
             );
           }),
-    );
+    ));
   }
 }

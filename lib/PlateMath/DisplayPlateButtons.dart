@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:scoped_model/scoped_model.dart';
-import 'package:gym_app/ViewModel.dart';
+import 'package:redux/redux.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:gym_app/domain/app_state.dart';
+import 'package:gym_app/domain/view_model.dart';
 
 class DisplayPlateButtons extends StatelessWidget {
   final AddPlateCallback addMethod;
@@ -15,16 +17,16 @@ class DisplayPlateButtons extends StatelessWidget {
       a.add(new PlateButtons(
         addValue: addMethod,
         plate: plates[i],
-        color: model.colorDictionary[plates[i]],
+        color: model.theme.colorDictionary[plates[i]],
       ));
     }
     return a;
   }
-
   @override
   Widget build(BuildContext context) {
-    return ScopedModelDescendant<ViewModel>(
-        builder: (context, child, model) => Row(
+    return StoreConnector<AppState,ViewModel>(
+      converter: (Store<AppState> store) => ViewModel.create(store),
+        builder: (BuildContext context, ViewModel model) => Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: CreateDisplay(model),
             ));
@@ -44,6 +46,7 @@ class PlateButtons extends StatelessWidget {
     return Center(
         child: FloatingActionButton(
       child: new Text(plate.toString()),
+      heroTag: plate.toString(),
       onPressed: () {
         addValue(plate);
       },
