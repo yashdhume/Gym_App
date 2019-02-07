@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class DisplayPlate extends StatelessWidget {
   final Color color;
   final double weight;
@@ -10,7 +9,7 @@ class DisplayPlate extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Container(
         padding: EdgeInsets.all(15.0),
-        width:  100 + weight * 10,
+        width: 100 + weight * 10,
         height: 50,
         //color: color,
         decoration: BoxDecoration(

@@ -7,16 +7,10 @@ import 'package:redux/redux.dart';
 import 'package:gym_app/ui/root_page.dart';
 import 'package:gym_app/data/auth.dart';
 
-void main(){
-  final Store<AppState> store = Store<AppState>(
-    appstateReducer,
-    initialState: AppState.initalState(),
-    middleware: [appStateMiddleware]
-  );
-  runApp(StoreProvider<AppState>(
-    store: store,
-    child: GymApp()
-  ));
+void main() {
+  final Store<AppState> store = Store<AppState>(appstateReducer,
+      initialState: AppState.initalState(), middleware: [appStateMiddleware]);
+  runApp(StoreProvider<AppState>(store: store, child: GymApp()));
 }
 
 class GymApp extends StatelessWidget {
@@ -28,7 +22,9 @@ class GymApp extends StatelessWidget {
         primaryColor: Colors.red,
         accentColor: Colors.cyan[600],
       ),
-      home: new RootPage(auth: Auth(),),
+      home: new RootPage(
+        auth: Auth(),
+      ),
     );
   }
 }

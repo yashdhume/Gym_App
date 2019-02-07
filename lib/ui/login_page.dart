@@ -53,15 +53,15 @@ class _LoginPage extends State<LoginPage>{
   }
   Widget _logo(){
     return Container(
-      height: 200,
-      padding: EdgeInsets.all(10.0),
-      child: Text('Gym App',
-        style: TextStyle(
-          fontSize: 25,
-          color: Colors.white,
-        ),
-      )
-      );
+        height: 200,
+        padding: EdgeInsets.all(10.0),
+        child: Text('Gym App',
+          style: TextStyle(
+            fontSize: 25,
+            color: Colors.white,
+          ),
+        )
+    );
   }
   Widget _emailInput() {
     return new TextFormField(
@@ -156,9 +156,9 @@ class _LoginPage extends State<LoginPage>{
       body: new Form(
         key: formKey,
         child: new Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[_logo(), _emailInput(), _passwordInput(), _label(), _submitButton()],
-      ),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[_logo(), _emailInput(), _passwordInput(), _label(), _submitButton()],
+        ),
       ),
     );
   }

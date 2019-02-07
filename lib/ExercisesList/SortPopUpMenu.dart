@@ -1,4 +1,4 @@
-class SortPopUpMenuConstants{
+class SortPopUpMenuConstants {
   static const String muscle = "Muscle Group";
   static const String exercise = "Exersises";
 

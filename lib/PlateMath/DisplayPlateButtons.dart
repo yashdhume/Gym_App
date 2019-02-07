@@ -22,10 +22,11 @@ class DisplayPlateButtons extends StatelessWidget {
     }
     return a;
   }
+
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState,ViewModel>(
-      converter: (Store<AppState> store) => ViewModel.create(store),
+    return StoreConnector<AppState, ViewModel>(
+        converter: (Store<AppState> store) => ViewModel.create(store),
         builder: (BuildContext context, ViewModel model) => Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: CreateDisplay(model),

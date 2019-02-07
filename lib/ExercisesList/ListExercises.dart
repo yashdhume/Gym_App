@@ -8,7 +8,6 @@ import 'package:redux/redux.dart';
 import 'package:gym_app/domain/view_model.dart';
 import 'package:gym_app/domain/app_state.dart';
 
-
 class ListExercises extends StatefulWidget {
   _ListExercises createState() => new _ListExercises();
 }
@@ -59,43 +58,45 @@ class _ListExercises extends State<ListExercises> {
       streamer(choicee);
     }
   }
+
   Widget build(BuildContext context) {
     return StoreConnector<AppState, ViewModel>(
-      converter: (Store<AppState> store) => ViewModel.create(store),
-      builder: (BuildContext context, ViewModel model) => 
-       Scaffold(
-      appBar: AppBar(
-        title: Text('List'),
-        actions: <Widget>[
-          new IconButton(icon: Icon(Icons.search), onPressed: null),
-          PopupMenuButton<String>(
-            onSelected: choiceAction,
-            itemBuilder: (BuildContext context) {
-              return SortPopUpMenuConstants.choices.map((String choice) {
-                return PopupMenuItem<String>(
-                  value: choice,
-                  child: Text(choice),
-                );
-              }).toList();
-            },
-          )
-        ],
-      ),
-      body: StreamBuilder(
-          stream: _streamList,
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {
-              // streamer(choicee);
-              return new CircularProgressIndicator();
-            }
-            if (snapshot.hasError) return Text('Error: ${snapshot.error}');
-            return ListView.builder(
-              itemExtent: 80.0,
-              itemCount: snapshot.data.documents.length,
-              itemBuilder: (context, index) =>
-                  _buildListItem(context, snapshot.data.documents[index]),
-            );
-          }),
-    ));
+        converter: (Store<AppState> store) => ViewModel.create(store),
+        builder: (BuildContext context, ViewModel model) => Scaffold(
+              appBar: AppBar(
+                title: Text('List'),
+                actions: <Widget>[
+                  new IconButton(icon: Icon(Icons.search), onPressed: null),
+                  PopupMenuButton<String>(
+                    onSelected: choiceAction,
+                    itemBuilder: (BuildContext context) {
+                      return SortPopUpMenuConstants.choices
+                          .map((String choice) {
+                        return PopupMenuItem<String>(
+                          value: choice,
+                          child: Text(choice),
+                        );
+                      }).toList();
+                    },
+                  )
+                ],
+              ),
+              body: StreamBuilder(
+                  stream: _streamList,
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      // streamer(choicee);
+                      return new CircularProgressIndicator();
+                    }
+                    if (snapshot.hasError)
+                      return Text('Error: ${snapshot.error}');
+                    return ListView.builder(
+                      itemExtent: 80.0,
+                      itemCount: snapshot.data.documents.length,
+                      itemBuilder: (context, index) => _buildListItem(
+                          context, snapshot.data.documents[index]),
+                    );
+                  }),
+            ));
   }
 }

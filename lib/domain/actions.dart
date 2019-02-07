@@ -1,18 +1,19 @@
 import 'package:gym_app/data/exercise.dart';
+
 //PLATES ACTIONS
 //-----------------------------------------------------
-class SetPlates{
+class SetPlates {
   final List<double> plates;
+
   SetPlates(this.plates);
 }
 //-----------------------------------------------------
 
-
-
 //BAR WEIGHT ACTIONS
 //----------------------------------------------------
-class SetBarWeight{
+class SetBarWeight {
   final double weight;
+
   SetBarWeight(this.weight);
 }
 
@@ -21,10 +22,10 @@ class SetBarWeight{
 //DATABASE ACTIONS
 //----------------------------------------------------
 
-class GetExerciseList{
-}
-class LoadedExercises{
-  List<Exercise> exercises;
-  LoadedExercises(this.exercises);
+class GetExerciseList {}
 
+class LoadedExercises {
+  List<Exercise> exercises;
+
+  LoadedExercises(this.exercises);
 }
